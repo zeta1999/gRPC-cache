@@ -18,7 +18,6 @@
     - [Local](#local)
     - [Docker](#docker)
     - [Kubernetes](#kubernetes)
-      - [Host setup](#host-setup)
       - [Example](#example)
     - [Helm](#helm)
 - [API](#api)
@@ -108,21 +107,7 @@ You can run server on your kubernetes cluster. All the resources are created on 
 
 - Run this command `make run-k8s-server`
 
-This will create all the required resources needed to run your `grpc server`.
-
-#### Host setup
-
- Make sure all resources are ready before running the below command to get your IP for ingress.
-
-`kubectl get ingress grpc-cache -o jsonpath='{.status.loadBalancer.ingress[0].ip}'`
-> 192.168.64.3
-
-You will have a diffrent output. You need this to add to your `/etc/hosts`. Add the above IP to your `/etc/hosts` to map to your ingress host.
-
-`192.168.64.3 grpc-cache.example.com`
-> 192.168.64.3 will be different for you.
-
-Now you can easily test it using [grpcurl](https://github.com/fullstorydev/grpcurl).
+This will create all the required resources needed to run your `grpc server`. You will be asked for passowrd once, to enter ingress address to host mapping automatically to `/etc/hosts`
 
 #### Example
 
@@ -148,9 +133,7 @@ Similarly you can use all the methods as shown in API below
 
 # Helm
 
-Running with Helm is the most easiest way. Just run `make run-helm-server` and it will deploy your application to your kubernetes cluster. This will create all the required resources needed to run your `grpc server`.
-
-After that follow [host setup](#host-setup) to setup your host locally.
+Running with Helm is the most easiest way. Just run `make run-helm-server` and it will deploy your application to your kubernetes cluster. This will create all the required resources needed to run your `grpc server`. You will be asked for passowrd once, to enter ingress address to host mapping automatically to `/etc/hosts`
 
 Now you can easily test it using [grpcurl](https://github.com/fullstorydev/grpcurl). For API usage you can refer to [example](#example)
 
